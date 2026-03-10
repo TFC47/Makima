@@ -77,13 +77,13 @@ initParticles();
 animateParticles();
 
     // === Bunny Lock Logic ===
-    const PASSKEY = "bark"; // Change your secret passkey here
+    const PASSKEY = "cutedevil"; // Change your secret passkey here
 
     unlockBtn.addEventListener('click', () => {
         if (lockInput.value.toLowerCase() === PASSKEY) {
             lockScreen.style.display = 'none';
         } else {
-            lockMsg.textContent = "ACCESS DENIED. GOOD DOGS BARK.";
+            lockMsg.textContent = "ACCESS DENIED.";
             lockMsg.style.color = "var(--crimson)";
             lockInput.value = "";
             lockInput.focus();
@@ -143,3 +143,4 @@ sendBtn.addEventListener('click', sendMessage);
 userInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
 
 });
+
