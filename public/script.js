@@ -101,54 +101,45 @@ animateParticles();
     });
 
     // === Chat Logic ===
-    async function sendMessage() {
-        const text = userInput.value.trim();
-        if (!text) return;
+  function appendMessage(text, sender) {
+    const msgDiv = document.createElement('div');
+    msgDiv.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
+    msgDiv.innerHTML = `<p>${text}</p>`;
+    chatBox.appendChild(msgDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
 
-        // Append user message
-        appendMessage(text, 'user-message');
-        userInput.value = '';
+async function sendMessage() {
+    const text = userInput.value.trim();
+    if (!text) return;
 
-        try {
-            // Hit the Flask/Vercel backend
-            const response = await fetch('/api/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: text })
-            });
+    appendMessage(text, 'user');
+    userInput.value = '';
 
-            const data = await response.json();
-            
-            // Append Makima's response
-            if (data.reply) {
-                appendMessage(data.reply, 'bot-message');
-            } else if (data.error) {
-                console.error("Backend Error:", data.error);
-                appendMessage("System error. The Control Devil is displeased.", 'bot-message');
-            }
-        } catch (error) {
-            console.error("Fetch Error:", error);
-            appendMessage("Network disconnected. Makima cannot hear you.", 'bot-message');
-        }
+    const typingDiv = document.createElement('div');
+    typingDiv.classList.add('message', 'bot-message');
+    typingDiv.id = 'typing-indicator';
+    typingDiv.innerHTML = `<p>...</p>`;
+    chatBox.appendChild(typingDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    try {
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: text })
+        });
+        const data = await response.json();
+        
+        document.getElementById('typing-indicator').remove();
+        appendMessage(data.reply || data.error, 'bot');
+    } catch (error) {
+        document.getElementById('typing-indicator').remove();
+        appendMessage("Signal lost. You can never match Makima aura", 'bot');
     }
+}
 
-    function appendMessage(text, className) {
-        const msgDiv = document.createElement('div');
-        msgDiv.className = `message ${className}`;
-        
-        const p = document.createElement('p');
-        p.textContent = text;
-        msgDiv.appendChild(p);
-        
-        chatBox.appendChild(msgDiv);
-        
-        // Auto-scroll to the bottom
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }
+sendBtn.addEventListener('click', sendMessage);
+userInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
 
-    // Event Listeners for Chat
-    sendBtn.addEventListener('click', sendMessage);
-    userInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendMessage();
-    });
 });
