@@ -1,0 +1,560 @@
+/* =========================================
+   PUBLIC SAFETY OFFICE THEME (LIGHT) 🩸
+   ========================================= */
+:root {
+    --crimson: #8B0000;
+    --burnt-orange: #D35400;
+    --amber: #FF8C00;
+    --ash-gray: #6E6E6E;
+    --ivory: #F5F5F5;
+    --gold: #D4AF37;
+    --pure-white: #FFFFFF;
+    
+    /* Functional Mappings */
+    --bg-main: var(--pure-white); 
+    --card-bg: var(--ivory); 
+    --text-main: #1C1C1C; 
+    --text-muted: #555555;
+}
+
+/* =========================================
+   GLOBAL RESET & BASE
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: transparent;
+    color: var(--text-main);
+    font-family: 'Segoe UI', 'Nunito', Tahoma, Geneva, Verdana, sans-serif; 
+    overflow-x: hidden;
+}
+
+body.locked {
+    overflow: hidden;
+}
+
+body.locked .scroll-container {
+    display: none;
+}
+
+/* =========================================
+   BACKGROUND & GLASS PANEL
+   ========================================= */
+#dynamic-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh; 
+    background-size: contain; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--pure-white); 
+    filter: blur(8px); 
+    opacity: 0.8; 
+    z-index: -3;
+}
+
+#glass-panel {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(245, 245, 245, 0.5); 
+    z-index: -2;
+}
+
+#particle-canvas {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    pointer-events: none; 
+    z-index: -1;
+}
+
+/* =========================================
+   BUNNY LOCK SCREEN 
+   ========================================= */
+#bunny-lock-screen {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+body.locked #bunny-lock-screen {
+    display: flex;
+}
+
+.lock-terminal {
+    background: var(--card-bg);
+    border: 2px solid var(--crimson);
+    padding: 40px;
+    text-align: center;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(139, 0, 0, 0.15);
+    max-width: 400px;
+    width: 90%;
+}
+
+.lock-title {
+    color: var(--crimson);
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.lock-status {
+    color: var(--amber);
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+
+#lock-input {
+    background: var(--bg-main);
+    border: 2px solid var(--ash-gray);
+    color: var(--text-main);
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+    border-radius: 15px;
+    outline: none;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+#lock-input:focus {
+    border-color: var(--amber);
+    box-shadow: 0 0 10px rgba(255, 140, 0, 0.2);
+}
+
+.cyber-btn, #enter-btn {
+    background: linear-gradient(135deg, var(--crimson), var(--burnt-orange));
+    color: var(--pure-white);
+    border: none;
+    padding: 15px 30px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+}
+
+.cyber-btn:hover, #enter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(211, 84, 0, 0.4);
+}
+
+/* =========================================
+   INTRO SCREEN
+   ========================================= */
+.screen {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, 0.5); 
+    background-blend-mode: lighten;
+    z-index: 9000;
+}
+
+.screen.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro-content {
+    background: rgba(245, 245, 245, 0.9);
+    padding: 50px 60px;
+    text-align: center;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border: 2px solid var(--crimson);
+}
+
+.intro-content h1 {
+    color: var(--crimson);
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    font-weight: 800;
+}
+
+/* =========================================
+   SCROLL CONTAINER & SECTIONS
+   ========================================= */
+.scroll-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section {
+    margin: 60px 0;
+}
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+.hero-section {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.intro-profile-img {
+    width: 250px;  /* Slightly smaller so it fits perfectly on mobile */
+    height: 250px;
+    flex-shrink: 0; /* Forces it to NEVER squish */
+    border-radius: 50%;
+    border: 4px solid var(--gold);
+    object-fit: cover; /* Ensures the image crops perfectly inside the circle */
+    margin-bottom: 20px;
+    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+}
+.title-container h1 {
+    font-size: 3.5rem;
+    color: var(--text-main);
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: var(--burnt-orange);
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.quote-box {
+    background: var(--card-bg);
+    display: inline-block;
+    padding: 15px 35px;
+    font-style: italic;
+    color: var(--text-main);
+    border-radius: 30px;
+    border-left: 4px solid var(--crimson);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* =========================================
+   GALLERY SECTION
+   ========================================= */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 350px)); 
+    justify-content: center; 
+    gap: 30px;
+    padding: 20px;
+}
+
+.gallery-item {
+    height: 550px; 
+    background-size: cover;
+    background-position: top center; 
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--ash-gray);
+}
+
+.gallery-item:hover {
+    transform: translateY(-10px);
+    border-color: var(--crimson);
+    box-shadow: 0 15px 30px rgba(139, 0, 0, 0.25);
+}
+
+.overlay-text {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(139, 0, 0, 0.9));
+    color: var(--pure-white);
+    text-align: center;
+    padding: 30px 10px 15px;
+    font-size: 1.5rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .overlay-text {
+    transform: translateY(0);
+}
+
+/* =========================================
+   INSTRUCTIONS SECTION 
+   ========================================= */
+.terminal-instructions {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    max-width: 700px;
+    margin: 0 auto;
+    border: 1px solid rgba(139, 0, 0, 0.2);
+}
+
+.terminal-instructions h3 {
+    color: var(--crimson);
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.terminal-instructions p {
+    margin-bottom: 15px;
+    color: var(--text-main);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.terminal-instructions p::before {
+    content: "🩸 ";
+    color: var(--crimson);
+}
+
+/* =========================================
+   CHAT SECTION 
+   ========================================= */
+.chat-container {
+    background: var(--card-bg);
+    border-radius: 25px;
+    overflow: hidden;
+    
+    /* Slashed from 800px to 450px to make it sleek and narrow */
+    max-width: 450px; 
+    
+    margin: 0 auto; /* Keeps it perfectly centered on the screen */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--crimson);
+}
+
+.chat-header {
+    background: var(--pure-white);
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(139, 0, 0, 0.2);
+}
+
+.avatar-glow {
+    width: 12px;
+    height: 12px;
+    background: var(--gold); 
+    border-radius: 50%;
+    margin-right: 15px;
+    box-shadow: 0 0 10px var(--gold);
+}
+
+.header-info h2 {
+    font-size: 1.3rem;
+    color: var(--text-main);
+}
+
+.status {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* =========================================
+   CHAT BOX WITH LIGHT FILTER
+   ========================================= */
+.chat-box {
+    /* Bumped up from 65vh to 75vh for maximum vertical height */
+    height: 75vh; 
+    overflow-y: auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-image: linear-gradient(rgba(245, 245, 245, 0.596), rgba(245, 245, 245, 0.596)), url('pics/7.jfif');
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.message {
+    max-width: 75%;
+    padding: 15px 20px;
+    line-height: 1.5;
+    font-size: 1.05rem;
+}
+
+.bot-message {
+    background: var(--crimson);
+    color: var(--pure-white);
+    align-self: flex-start;
+    border-radius: 20px 20px 20px 5px; 
+    border-left: 2px solid var(--amber);
+    box-shadow: 0 4px 10px rgba(139, 0, 0, 0.2);
+}
+
+.user-message {
+    background: var(--card-bg);
+    color: var(--text-main);
+    align-self: flex-end;
+    border-radius: 20px 20px 5px 20px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #E0E0E0;
+}
+
+.input-container {
+    display: flex;
+    padding: 20px;
+    background: var(--pure-white);
+    border-top: 1px solid rgba(139, 0, 0, 0.1);
+    gap: 10px;
+}
+
+#user-input {
+    flex-grow: 1;
+    background: var(--card-bg);
+    border: 1px solid var(--ash-gray);
+    color: var(--text-main);
+    padding: 15px 20px;
+    outline: none;
+    border-radius: 30px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+#user-input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+    background: var(--pure-white);
+}
+
+#send-btn {
+    background: var(--crimson);
+    color: var(--pure-white);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(139, 0, 0, 0.3);
+}
+
+#send-btn:hover {
+    background: var(--amber);
+    transform: scale(1.05);
+}
+
+/* =========================================
+   CREATOR PROFILE (REDESIGNED)
+   ========================================= */
+.creator-card {
+    background: var(--card-bg);
+    display: flex;
+    flex-direction: column; /* Stacks image perfectly on top of text */
+    align-items: center;
+    text-align: center; /* Centers all the text */
+    padding: 50px 30px;
+    max-width: 400px; /* Slimmer, sleeker card profile */
+    margin: 0 auto;
+    border-radius: 25px;
+    gap: 15px;
+    box-shadow: 0 15px 40px rgba(139, 0, 0, 0.1);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    border: 2px solid rgba(139, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+}
+
+.creator-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--crimson);
+    box-shadow: 0 20px 50px rgba(139, 0, 0, 0.2);
+}
+
+.creator-img {
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0; /* Guarantee 100% perfect circle forever */
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: 4px solid var(--crimson); /* Bolder border to make it pop */
+    box-shadow: 0 10px 20px rgba(139, 0, 0, 0.2);
+    margin-bottom: 10px;
+}
+
+.creator-info h4 {
+    color: var(--amber);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 5px;
+    font-weight: 800;
+}
+
+.creator-info h2 {
+    font-size: 2.2rem;
+    color: var(--text-main);
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.creator-info p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.portfolio-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: linear-gradient(135deg, var(--crimson), var(--burnt-orange));
+    color: var(--pure-white);
+    padding: 12px 35px;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-size: 1rem;
+    box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+}
+
+.portfolio-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(211, 84, 0, 0.5);
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+/* --- Terminal Footer --- */
+.terminal-footer {
+    width: 100%;
+    text-align: center;
+    padding: 40px 30px;
+    background: transparent;
+    border-top: 1px solid rgba(255, 90, 90, 0.15);
+    color: var(--crimson);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1; 
+}
+.terminal-footer p { margin: 8px 0; opacity: 0.6; }
+
+body.locked .terminal-footer {
+    display: none;
+}

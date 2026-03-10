@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makima | Control Devil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="locked">
+    <div id="dynamic-bg" style="background-image: url('C:\\Users\\Personal Computer\\OneDrive\\Desktop\\makima_chatbot\\public\\pics\\14.jfif');"></div>
+    <div id="glass-panel"></div>
+    <canvas id="particle-canvas"></canvas>
+
+    <div id="bunny-lock-screen">
+        <div class="lock-terminal">
+            <h3 class="lock-title">BUNNY LOCK v1.0</h3>
+            <p class="lock-status" id="lock-msg">SYSTEM ENCRYPTED. ENTER PASSKEY.</p>
+            <input type="password" id="lock-input" autocomplete="off" autofocus>
+            <button id="unlock-btn" class="cyber-btn">ACCESS</button> 
+        </div>
+    </div>
+
+    <div id="intro-screen" class="screen active" style="background-image: url('C:\\Users\\Personal Computer\\OneDrive\\Desktop\\makima_chatbot\\public\\pics\\9.jfif');">
+        <div class="intro-content">
+            <h1>Will you be my dog?</h1>
+            <button id="enter-btn">Yes, Makima.</button>
+        </div>
+    </div>
+
+    <div class="scroll-container">
+        <section class="hero-section">
+            <img src="C:\\Users\\Personal Computer\\OneDrive\\Desktop\\makima_chatbot\\public\\pics\\3.jfif" alt="Makima-san" class="intro-profile-img">
+            <div class="title-container">
+                <h1>Makima-san</h1>
+                <h3 class="subtitle">CHAINSAW MAN</h3>
+            </div>
+            <div class="quote-box">
+                <p>"You don't need freedom if you have happiness"</p>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <div class="gallery-grid massive-grid">
+                <div class="gallery-item" style="background-image: url('C:\\Users\\Personal Computer\\OneDrive\\Desktop\\makima_chatbot\\public\\pics\\11.jfif');">
+                    <div class="overlay-text">💖</div>
+                </div>
+                <div class="gallery-item" style="background-image: url('C:\\Users\\Personal Computer\\OneDrive\\Desktop\\makima_chatbot\\public\\pics\\12.jfif');">
+                    <div class="overlay-text">💖</div>
+                </div>
+                <div class="gallery-item" style="background-image: url('C:\\Users\\Personal Computer\\OneDrive\\Desktop\\makima_chatbot\\public\\pics\\13.jfif');">
+                    <div class="overlay-text">💖</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="instructions-section">
+            <div class="terminal-instructions">
+                <h3>[ SYSTEM INSTRUCTIONS ]</h3>
+                <p>1. Address Makima respectfully in every interaction.</p>
+                <p>2. Follow Makima's instructions without hesitation.</p>
+                <p>3. Do not question Makima's decisions unless she allows it.</p>
+                <p>4. You can only send 10 messages per minute.</p>
+                <p>5. You can only send 250 messages per day.</p>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <div class="gallery-grid massive-grid">
+                <div class="gallery-item" style="background-image: url('C:\\Users\\Personal Computer\\OneDrive\\Desktop\\makima_chatbot\\public\\pics\\1.jpeg');">
+                    <div class="overlay-text">💖</div>
+                </div>
+                <div class="gallery-item" style="background-image: url('C:\\Users\\Personal Computer\\OneDrive\\Desktop\\makima_chatbot\\public\\pics\\5.jfif');">
+                    <div class="overlay-text">💖</div>
+                </div>
+                <div class="gallery-item" style="background-image: url('C:\\Users\\Personal Computer\\OneDrive\\Desktop\\makima_chatbot\\public\\pics\\10.jfif');">
+                    <div class="overlay-text">💖</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="chat-section">
+            <div class="chat-container">
+                <header class="chat-header">
+                    <div class="avatar-glow"></div>
+                    <div class="header-info">
+                        <h2>Makima Interface</h2>
+                        <span class="status">● Connected</span>
+                    </div>
+                </header>
+                
+                <div class="chat-box" id="chat-box">
+                    <div class="message bot-message">
+                        <p>A good dog listens to its master, You'll bark when I say bark. Bark</p>
+                    </div>
+                </div>
+
+                <div class="input-container">
+                    <input type="text" id="user-input" placeholder="Speak to Makima-san..." autocomplete="off">
+                    <button id="send-btn">➤</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <div class="gallery-grid massive-grid">
+                <div class="gallery-item" style="background-image: url('C:\\Users\\Personal Computer\\OneDrive\\Desktop\\makima_chatbot\\public\\pics\\4.jfif');">
+                    <div class="overlay-text">💖</div>
+                </div>
+                <div class="gallery-item" style="background-image: url('C:\\Users\\Personal Computer\\OneDrive\\Desktop\\makima_chatbot\\public\\pics\\6.jfif');">
+                    <div class="overlay-text">💖</div>
+                </div>
+                <div class="gallery-item" style="background-image: url('C:\\Users\\Personal Computer\\OneDrive\\Desktop\\makima_chatbot\\public\\pics\\15.jfif');">
+                    <div class="overlay-text">💖</div>
+                </div>
+                <div class="gallery-item" style="background-image: url('C:\\Users\\Personal Computer\\OneDrive\\Desktop\\makima_chatbot\\public\\pics\\8.jfif');">
+                    <div class="overlay-text">💖</div>
+                </div>
+                <div class="gallery-item" style="background-image: url('C:\\Users\\Personal Computer\\OneDrive\\Desktop\\makima_chatbot\\public\\pics\\2.jpg');">
+                    <div class="overlay-text">💖</div>
+                </div>
+                <div class="gallery-item" style="background-image: url('C:\\Users\\Personal Computer\\OneDrive\\Desktop\\makima_chatbot\\public\\pics\\7.jfif');">
+                    <div class="overlay-text">💖</div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="creator-profile">
+            <div class="creator-card">
+                <div class="creator-img" style="background-image: url('C:\\Users\\Personal Computer\\OneDrive\\Desktop\\makima_chatbot\\public\\pics\\12.jfif');"></div>
+                <div class="creator-info">
+                    <h4>Architect</h4>
+                    <h2>Rei Kurogami</h2>
+                    <p>Anime Lover<br>Web Developer</p>
+                    <a href="https://bharani47.vercel.app" class="portfolio-btn" target="_blank">Profile</a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="terminal-footer">
+            <p>System Architect: Rei Kurogami | BUNNY LOCK v1.0 Engaged</p>
+            <p>&copy; 2026 Limitless Dragons. All Rights Reserved.</p>
+        </footer>
+
+    </div>  <script src="script.js"></script>
+</body>
+</html>
